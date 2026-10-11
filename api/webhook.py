@@ -18,7 +18,15 @@ class handler(BaseHTTPRequestHandler):
             if chat_id and text == "/start":
                 reply = f"Привет! Твой бонус 5000 рублей ждёт.\nЗабери здесь: {SITE_URL}"
                 requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-                             params={"chat_id": chat_id, "text": reply})
+             json={
+                 "chat_id": chat_id,
+                 "text": reply,
+                 "reply_markup": {
+                     "inline_keyboard": [[
+                         {"text": "🎁 ЗАБРАТЬ БОНУС", "url": SITE_URL}
+                     ]]
+                 }
+             })
         except Exception:
             pass
         self.send_response(200)
